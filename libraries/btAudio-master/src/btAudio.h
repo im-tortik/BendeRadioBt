@@ -33,7 +33,7 @@ class btAudio {
 	
 	// I2S Audio
 	void I2S(int bck, int dout, int ws);
-	void volume(float vol);
+	void volume(uint8_t vol);
     
 	// Filtering
 	void createFilter(int n, float hp,int type);
@@ -65,6 +65,8 @@ class btAudio {
     static int32_t  _sampleRate;
 	static int _postprocess;
 	
+	const double volumetable[22]={ 0.0, 0.0238, 0.0476, 0.0714, 0.0952, 0.119, 0.142, 0.166, 0.190, 0.214, 0.238,
+                                     0.261, 0.285, 0.309, 0.333, 0.357, 0.380, 0.404, 0.428, 0.452, 0.476, 0.499}; //22 elements
 	// static function causes a static infection of variables
 	static void i2sCallback(const uint8_t *data, uint32_t len);
 	static void a2d_cb(esp_a2d_cb_event_t event, esp_a2d_cb_param_t *param);
@@ -74,7 +76,8 @@ class btAudio {
 	static uint8_t _address[6];
 	static DRC _DRCR;
 	static DRC _DRCL;
-	static float _vol;
+	//static float _vol;
+	//static const uint8_t _vol=64;
 	static filter _filtLlp;
     static filter _filtRlp;
     static filter _filtLhp;

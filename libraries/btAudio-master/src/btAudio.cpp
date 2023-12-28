@@ -3,7 +3,8 @@
 ////////////////////////////////////////////////////////////////////
 ////////////// Nasty statics for i2sCallback ///////////////////////
 ////////////////////////////////////////////////////////////////////
- float btAudio::_vol=0.95;
+ //float btAudio::_vol=0.95;
+ double _vol = 0.238;
  esp_bd_addr_t btAudio::_address;
  int32_t btAudio::_sampleRate=44100;
   
@@ -316,8 +317,13 @@ void btAudio::i2sCallback(const uint8_t *data, uint32_t len){
   }
 
 }
-void btAudio::volume(float vol){
-	_vol = constrain(vol,0, 0.50);	
+
+//void btAudio::volume(float vol){
+//	_vol = constrain(vol,0, 0.50);	
+//}
+void btAudio::volume(uint8_t vol) { // vol 22 steps, 0...21
+    if(vol > 21) vol = 21;
+    _vol = volumetable[vol];
 }
 
 ////////////////////////////////////////////////////////////////////
