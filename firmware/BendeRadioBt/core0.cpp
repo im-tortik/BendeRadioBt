@@ -246,11 +246,11 @@ void core0(void* p) {
                 if (eb.pressing()) {
                     switch (eb.getClicks()) {
                         case 0:
-                            data.station += eb.dir();
+                            //data.station += eb.dir();
                             //data.station = constrain(data.station, 0, sizeof(stations) / sizeof(char*) - 1);
-                            print_val('s', data.station);
-                            matrix_tmr.start();
-                            station_changed = 1;
+                            //print_val('s', data.station);
+                            //matrix_tmr.start();
+                            //station_changed = 1;
                             break;
                         case 1:
                             data.bright_mouth += eb.dir();
@@ -267,7 +267,7 @@ void core0(void* p) {
                     if (data.state) {
                         angry_tmr.start();
                         data.vol += eb.dir();
-                        data.vol = constrain(data.vol, 0, 1);
+                        data.vol = constrain(data.vol, 0, 21);
                         btaudio.volume(data.vol);
                         print_val('v', data.vol);
                         matrix_tmr.start();
